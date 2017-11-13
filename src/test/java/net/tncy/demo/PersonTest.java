@@ -1,8 +1,8 @@
 package net.tncy.demo;
 
 import org.apache.log4j.BasicConfigurator;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -15,14 +15,14 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class PersonTest {
 
     private static Validator validator;
 
-    @BeforeAll
-    public static void setup() {
+    @Before
+    public void setup() {
         BasicConfigurator.configure();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         PersonTest.validator = factory.getValidator();
@@ -61,6 +61,7 @@ public class PersonTest {
         LocalDate birth = LocalDate.of(1995, 10, 23);
         Date date = Date.from(birth.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Person p = new Person("Victor", "Chelou", date, "La vôgie");
+
         Set<ConstraintViolation<Person>> constraintViolations = PersonTest.validator.validate(p);
         assertEquals(0, constraintViolations.size());
     }
