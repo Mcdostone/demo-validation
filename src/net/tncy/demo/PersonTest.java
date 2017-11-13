@@ -36,15 +36,15 @@ public class PersonTest {
     }
 
     @Test
-    public void testConstructorWithNullFirstname() {
-        Person p = new Person(null, "Berry", new Date(), 18, "London");
+    public void testAnonymousPerson() {
+        Person p = new Person("", "", null, "");
         Set<ConstraintViolation<Person>> constraintViolations = PersonTest.validator.validate(p);
-        assertEquals(1, constraintViolations.size());
+        assertEquals(4, constraintViolations.size());
     }
 
     @Test
-    public void testConstructorWithEmptylastname() {
-        Person p = new Person("Claude", "", new Date(), 18, "London");
+    public void testConstructorWithNullFirstname() {
+        Person p = new Person(null, "Berry", new Date(), 18, "London");
         Set<ConstraintViolation<Person>> constraintViolations = PersonTest.validator.validate(p);
         assertEquals(1, constraintViolations.size());
     }

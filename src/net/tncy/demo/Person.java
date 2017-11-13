@@ -36,9 +36,12 @@ public class Person {
     }
 
     private static int calculateAge(Date birthday) {
-        LocalDate now = LocalDate.now();
-        LocalDate birth = birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        return Period.between(birth, now).getYears();
+        if (birthday != null) {
+            LocalDate now = LocalDate.now();
+            LocalDate birth = birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            return Period.between(birth, now).getYears();
+        }
+        return 0;
     }
 
 }
