@@ -31,7 +31,7 @@ public class CalculatorTest {
 
     @Test
     public void testDiv() {
-        assertEquals("Should be 3",3, this.c.multiply(9,3), 0);
+        assertEquals("Should be 3",3, this.c.divide(9,3), 0);
     }
-    
+
 }
